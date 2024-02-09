@@ -3,10 +3,15 @@ import numpy as np
 
 def power_law_transformation(image, gamma):
     # Power-Law (Gamma) Transformation: s = c * r^gamma
-    c= 255 # Scaling factor for normalization to 0-255 range
-    r=image.astype(float)
-    power_law_transformed_image = c * (r/255 )** gamma
-    return power_law_transformed_image.astype('uint8')  # Convert to uint8
+    c=255
+    height,width = image.shape
+    for i in range(height):
+        for j in range(width):
+            pixel_value=image[i,j]/255
+            powervalue=c*(pixel_value**gamma)
+            image[i,j]=np.clip(powervalue,0,255)
+    return image.astype('uint8')
+    
 
 def image_subtraction(original_image, enhanced_image):
     # Image Subtraction: Subtract the original image from the enhanced image

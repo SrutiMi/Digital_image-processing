@@ -18,3 +18,14 @@ contrast_stretched = contrast_stretching(image)
 cv2.imshow('Original',image)
 cv2.imshow('Contrast Stretched',contrast_stretched)
 cv2.waitKey(0)
+
+# Display using matplotlib
+fig, axes = plt.subplots(1, 2, figsize=(10, 5))
+axes[0].imshow(image, cmap='gray')
+axes[0].set_title("Original Image")
+
+axes[1].imshow(contrast_stretched, cmap='gray')
+axes[1].set_title("Stretched Image")
+
+plt.show()
+
